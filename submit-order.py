@@ -2,39 +2,24 @@
 
 __author__ = 'oneflow'
 
-import requests, json, hmac, hashlib, datetime, base64, string, random, os
+import json, string, random
+from OneflowSDK import OneflowSDK
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
 	return ''.join(random.choice(chars) for _ in range(size))
 
-def create_headers(method, path, timestamp):
-	string_to_sign = method + ' ' + path + ' ' + timestamp
-	signature = hmac.new(secret, string_to_sign, hashlib.sha1).hexdigest()
-	oneflow_auth = token + ':' + signature
-	return {'content-type': 'application/json',
-		'x-oneflow-authorization': oneflow_auth,
-		'x-oneflow-date': timestamp}
-
-def oneflow_request(method, path, data):
-	timestamp = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-	url = endpoint + path
-	headers = create_headers(method, path, timestamp)
-	result = requests.post(url, data, headers=headers)
-	return result.content
-
 def validate_order(order):
-	print "Validating Order"
-	return oneflow_request("POST", '/api/order/validate', order)
+	print("Validating Order")
+	return client.request("POST", '/api/order/validate', order)
 
 def submit_order(order):
-	print "Submitting Order"
-	return oneflow_request("POST", '/api/order', order)
-
+	print("Submitting Order")
+	return client.request("POST", '/api/order', order)
 
 #oneflow acccess credentials
-token = os.environ['ONEFLOW_TOKEN']
-secret = os.environ['ONEFLOW_SECRET']
-endpoint = 'http://stage.oneflowcloud.com'
+
+#OneflowSDK instance
+client = OneflowSDK(endpoint, token, secret)
 
 #Here are the variables required for a single item order
 #this is not a full set of fields available
@@ -92,7 +77,7 @@ order = {
 }
 
 #validate the order
-print validate_order(json.dumps(order))
+print(validate_order(json.dumps(order)))
 
 #finally, submit the order
-print submit_order(json.dumps(order))
+print(submit_order(json.dumps(order)))
