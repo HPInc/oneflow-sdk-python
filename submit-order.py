@@ -2,7 +2,7 @@
 
 __author__ = 'oneflow'
 
-import json, string, random
+import json, string, random, os
 from OneflowSDK import OneflowSDK
 
 def id_generator(size=6, chars=string.ascii_uppercase + string.digits):
@@ -17,6 +17,9 @@ def submit_order(order):
 	return client.request("POST", '/api/order', order)
 
 #oneflow acccess credentials
+token = os.environ['ONEFLOW_TOKEN']
+secret = os.environ['ONEFLOW_SECRET']
+endpoint = 'http://stage.oneflowcloud.com'
 
 #OneflowSDK instance
 client = OneflowSDK(endpoint, token, secret)
