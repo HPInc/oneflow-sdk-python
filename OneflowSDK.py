@@ -35,9 +35,10 @@ class OneflowSDK:
 
     def create_headers(self, method, path, timestamp):
         string_to_sign = method + ' ' + path + ' ' + timestamp
-        signature = hmac.new(bytes(self.secret, 'UTF-8'), string_to_sign.encode(), hashlib.sha1).hexdigest()
+        signature = hmac.new(bytes(self.secret, 'UTF-8'), string_to_sign.encode(), hashlib.sha256).hexdigest()
         oneflow_auth = self.token + ':' + signature
         return {'content-type': 'application/json',
+            'x-oneflow-algorithm': 'SHA256',
             'x-oneflow-authorization': oneflow_auth,
             'x-oneflow-date': timestamp}
 
