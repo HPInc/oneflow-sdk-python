@@ -31,7 +31,7 @@ orderId = id_generator()
 itemId = id_generator()
 sku = "card"
 quantity = 1
-fetchPath = "https://oneflow-public.s3.amazonaws.com/CardSample.pdf"
+fetchPath = "https://files-static.hpsiteflow.com/samples/CardSample.pdf"
 componentCode = "card"
 shipTo = {
 	"name":           "Nigel Watson",

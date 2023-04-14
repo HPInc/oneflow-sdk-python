@@ -13,7 +13,7 @@
         "components": [
           {
             "code": "card",
-            "path": "https://oneflow-public.s3.amazonaws.com/CardSample.pdf",
+            "path": "https://files-static.hpsiteflow.com/samples/CardSample.pdf",
             "fetch": true
           }
         ]
