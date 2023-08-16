@@ -12,7 +12,7 @@
         "quantity": 1,
         "components": [
           {
-            "code": "card",
+            "code": "Card",
             "path": "https://files-static.hpsiteflow.com/samples/CardSample.pdf",
             "fetch": true
           }
@@ -22,13 +22,13 @@
     "shipments": [
       {
         "shipTo": {
-          "name": "Nigel Watson",
-          "companyName": "OneFlow Systems",
+          "name": "John Doe",
+          "companyName": "HP INC.",
           "address1": "1 Primrose Street",
           "town": "London",
           "postcode": "EC2A 4EX",
           "isoCountry": "GB",
-          "email": "info@oneflowsystems.com",
+          "email": "info@domain.com",
           "phone": "02037074173"
         },
         "carrier": {
