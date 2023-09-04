@@ -5,7 +5,7 @@ __author__ = "HPInc."
 import requests, hmac, hashlib, datetime
 from requests.adapters import HTTPAdapter
 from urllib3.util import Retry
-
+from urllib.parse import unquote
 
 class OneflowSDK:
     def __init__(self, url, token, secret, options=None):
@@ -40,7 +40,7 @@ class OneflowSDK:
 
     def create_headers(self, method, path):
         timestamp = datetime.datetime.now().isoformat()
-        string_to_sign = method.upper() + " " + path + " " + timestamp
+        string_to_sign = method.upper() + " " + unquote(path) + " " + timestamp
         signature = hmac.new(
             bytes(self.secret, "utf-8"), bytes(string_to_sign, "utf-8"), hashlib.sha256
         ).hexdigest()
