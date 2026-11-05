@@ -18,6 +18,7 @@ class RequestBodyTest(unittest.TestCase):
         with patch.object(requests.Session, "send", return_value=response) as send:
             result = self.client.request("POST", "/api/order", body)
         self.assertEqual(result, b"accepted")
+        self.assertIs(send.call_args.kwargs["allow_redirects"], False)
         request = send.call_args.args[0]
         self.assertEqual(request.headers["content-type"], "application/json")
         return request
