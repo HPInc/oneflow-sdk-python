@@ -41,4 +41,7 @@ result = client.request(method, path, data)
 
 ## Samples
 
+Dictionary request bodies are serialized to JSON. Already serialized JSON strings
+or bytes can also be passed as `data` and are sent unchanged.
+
 You can find Site Flow order validation and submission examples in the [samples](samples) folder.

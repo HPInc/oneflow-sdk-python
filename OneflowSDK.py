@@ -60,12 +60,13 @@ class OneflowSDK:
         url = self.url + path
         headers = self.create_headers(method, path)
         session = self.requests_retry_session()
+        body = {"json": data} if isinstance(data, dict) else {"data": data}
         result = session.request(
             method,
             url,
-            data=data,
             params=params,
             headers=headers,
             allow_redirects=False,
+            **body,
         )
         return result.content
